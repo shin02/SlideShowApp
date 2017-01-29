@@ -55,22 +55,32 @@ class ViewController: UIViewController {
     //再生・停止ボタン
     @IBOutlet weak var startstopButton: UIButton!
     @IBAction func startstopButton(_ sender: Any) {
+        
         //スライドが動いていなければタイマー動かす
         if timer == nil {
-            //停止ボタンに変更
-            startstopButton.setTitle("停止", for: UIControlState.normal)
-            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideImage), userInfo: nil, repeats: true)
+            
             //進むボタン無効化
             nextButton.isEnabled = false
             //戻るボタン無効化
             returnButton.isEnabled = false
+            //停止ボタンに変更
+            startstopButton.setTitle("停止", for: UIControlState.normal)
+            
+            //タイマーを動かす
+            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideImage), userInfo: nil, repeats: true)
+
         }
         //スライドが動いていればタイマーを止める
-        if timer != nil {
-            timer.invalidate()
-            timer = nil
+        else {
             //再生ボタンに変更
             startstopButton.setTitle("再生", for: UIControlState.normal)
+            //進むボタン有効化
+            nextButton.isEnabled = true
+            //戻るボタン有効化
+            returnButton.isEnabled = true
+            
+            timer.invalidate()
+            timer = nil
         }
     }
     
