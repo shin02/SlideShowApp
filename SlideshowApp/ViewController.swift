@@ -18,6 +18,20 @@ class ViewController: UIViewController {
     
     //segue用
     @IBAction func unwind(segue: UIStoryboardSegue) {
+        
+        //タイマーが動いていればタイマーを止める
+        if timer != nil {
+            timer.invalidate()
+            timer = nil
+            
+            //再生ボタンに変更
+            startstopButton.setTitle("再生", for: UIControlState.normal)
+            //進むボタン有効化
+            nextButton.isEnabled = true
+            //戻るボタン有効化
+            returnButton.isEnabled = true
+        }
+
     }
     
     //表示する画像
