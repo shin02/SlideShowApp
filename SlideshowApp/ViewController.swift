@@ -19,19 +19,6 @@ class ViewController: UIViewController {
     //segue用
     @IBAction func unwind(segue: UIStoryboardSegue) {
         
-        //タイマーが動いていればタイマーを止める
-        if timer != nil {
-            timer.invalidate()
-            timer = nil
-            
-            //再生ボタンに変更
-            startstopButton.setTitle("再生", for: UIControlState.normal)
-            //進むボタン有効化
-            nextButton.isEnabled = true
-            //戻るボタン有効化
-            returnButton.isEnabled = true
-        }
-
     }
     
     //表示する画像
@@ -126,6 +113,19 @@ class ViewController: UIViewController {
     //遷移時の値の受け渡し
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        //タイマーが動いていればタイマーを止める
+        if timer != nil {
+            timer.invalidate()
+            timer = nil
+            
+            //再生ボタンに変更
+            startstopButton.setTitle("再生", for: UIControlState.normal)
+            //進むボタン有効化
+            nextButton.isEnabled = true
+            //戻るボタン有効化
+            returnButton.isEnabled = true
+        }
+
         // segueから遷移先を取得する
         let zoomViewController:zoomViewController = segue.destination as! zoomViewController
         // 遷移先で宣言しているtapimageに代入して渡す
